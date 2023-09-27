@@ -5,6 +5,7 @@ import { Avatar, Card, IconButton } from 'react-native-paper'
 
 export default function User(props) {
 
+    const navigation = props.navigation
     const[usuario, setusuarios] = useState([])
     const usuarioId = props.route.params.id
     console.log(usuarioId)
@@ -25,7 +26,9 @@ export default function User(props) {
 
   return (
     <View>
-       <Card onPress={ ()=>{}}>
+       <Card onPress={ ()=>{
+        navigation.navigate('Postes', usuario)
+       }}>
                         <Card.Title
                             title={usuario?.username}
                             subtitle={usuario?.email}
