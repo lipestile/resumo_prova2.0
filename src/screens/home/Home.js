@@ -4,9 +4,12 @@ import { Avatar, Button, Card, IconButton, Text, } from 'react-native-paper'
 import Api from '../../services/Api'
 import { FlatList } from 'react-native-gesture-handler'
 
-export default function Home() {
+export default function Home(props) {
 
+    const navigation = props.navigation
+   
     const [usuarios, setusuarios] = useState([])
+
 
     useEffect(() => {
         Api.get('/users')
@@ -27,7 +30,9 @@ export default function Home() {
                 data={usuarios}
                 renderItem={({ item, index }) => {
                     return (
-                    <Card onPress={() => {alert('prees')}}>
+                    <Card onPress={ () => {
+                        navigation.navigate('Usuario', {id: item. id})
+                    }}>
                         <Card.Title
                             title={index + ': ' + item.username}
                             subtitle={item.email}
